@@ -105,7 +105,7 @@ class DES():
 
 if __name__ == '__main__':
     Plaintext = input("请输入明文:")
-    keyseed = input("请输入密钥种子(默认12345678)") or "12345678"
+    keyseed = input("请输入密钥(默认12345678)") or "12345678"
     Ciphertext = DES.Group_desEncode(Plaintext,keyseed)
     print("加密后密文为:"+Ciphertext)
     Plaintext = DES.Group_desDecode(Ciphertext)
