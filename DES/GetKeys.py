@@ -20,7 +20,7 @@ class GetKeys():
 	        14,6,61,53,45,37,29,
 	        21,13,5,28,20,12,4
 	    ]
-        for i in range(0,56)
+        for i in range(0,56):
             CD0+=key[PC1_Table[i]-1]
         return CD0
 

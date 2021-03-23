@@ -23,7 +23,6 @@ class init_IP:
 			for i in range(0,64):
 				fin+=Plaintext[Ip_table[i]-1]
 		#print("=======IP初始置换结束=======")
-		print("输入：",Tools.AsciiToString(Plaintext),"\n结果：",Tools.AsciiToString(fin))
 		return fin
 
 if __name__ == '__main__':
@@ -31,3 +30,4 @@ if __name__ == '__main__':
 	Plaintext = input("输入明文")
 	P_ascii = Tools.stringToAscii(Plaintext)
 	init_ip = init_IP.init_IP(P_ascii)
+	print(init_ip)
