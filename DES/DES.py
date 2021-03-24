@@ -3,6 +3,7 @@ from init_IP import init_IP
 from GetKeys import GetKeys
 from F_fanc import F_fanc
 from inverse_IP import IV_IP
+import codecs
 
 
 ZeroNum = 0 # 记录零的个数
@@ -59,6 +60,7 @@ class DES():
 
     @staticmethod
     def Group_desEncode(Plaintext,keyseed):
+        Plaintext = str(Plaintext.encode("utf8"))[2:-1]
         Plaintext_ascii = Tools.stringToAscii(Plaintext)
         GroupNum = len(Plaintext_ascii) // 64 # 判断有几组明文
         global ZeroNum
@@ -97,7 +99,8 @@ class DES():
             Plaintext_ascii += Plaintext_G
         Plaintext_ascii = Plaintext_ascii[0:(len(Plaintext_ascii)-ZeroNum)]
         Plaintext = Tools.AsciiToString(Plaintext_ascii)
-        
+        Plaintext = codecs.escape_decode(Plaintext)[0]
+        Plaintext = Plaintext.decode("utf8")  
         return Plaintext
 
 

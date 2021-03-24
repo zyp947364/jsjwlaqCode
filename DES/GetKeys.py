@@ -49,6 +49,9 @@ class GetKeys():
         ToLift_Table = [1,1,2,2,2,2,2,2,1,2,2,2,2,2,2,1]
         if RoundTime == 1:
             seed = Tools.stringToAscii(keyseed)
+            while len(seed) < 64:
+                seed = seed + "0"
+            seed = seed[0:64]
             seed = GetKeys.PC1(seed)
         else:
             seed = keyseed
