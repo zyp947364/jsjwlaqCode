@@ -1,5 +1,5 @@
 # 一些方法函数
-class Tools:
+class Tools():
     @staticmethod
     def complete8bits(string):
 	# "补全为8位二进制数"
