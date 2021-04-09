@@ -6,6 +6,7 @@
 # 计算e的关于模Phi_n的乘法逆元d,即满足e*d mod Phi_n =1
 # 公钥PK = {e,n},对应的私钥SK = {d} 
 from Tools import Tools
+from alive_progress import alive_bar
 
 
 class GetKey():
@@ -20,9 +21,11 @@ class GetKey():
     def Gete(Phi_n):
         # 欧几里德算法：若gcd(a,b)=1，则a,b互质
         e = []
-        for i in range(2,Phi_n):
-            if Tools.gcd(i,Phi_n) == 1:
-                e.append(i)
+        with alive_bar(Phi_n-2, title = "Gete") as bar:
+            for i in range(2,Phi_n):
+                bar()
+                if Tools.gcd(i,Phi_n) == 1:
+                    e.append(i)
         return e
     
 
@@ -36,14 +39,16 @@ class GetKey():
 
 
 if __name__ == "__main__":
-    # 找了11927和20903结果电脑卡住了 哭
-    p = 3
+    # 找了11927和20903结果好慢，／(ToT)／～～
+    p = 7
     q = 11927
     n = p*q
     Phi_n = GetKey.GetPhi_n(p,q)
     e = GetKey.Gete(Phi_n)
-    for i in e:
-        d = GetKey.Getd(i,Phi_n)
-        f = open("KEYS.txt","a")
-        text = "公钥:{"+str(i)+","+str(n)+"}; 私钥:{"+str(d)+"} \n"
-        f.write(text)       
+    f = open("KEYS.txt","w+")
+    with alive_bar(len(e), title = "Getd") as bar:
+        for i in e:
+            bar()
+            d = GetKey.Getd(i,Phi_n)
+            text = "公钥:{"+str(i)+","+str(n)+"}; 私钥:{"+str(d)+"} \n"
+            f.write(text)       
